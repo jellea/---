@@ -1,0 +1,10 @@
+body
+{
+  text-align              : center;
+}
+
+#placeholder {
+  margin                  : 0 auto;
+  width                   : 900px;
+  height                  : 250px;
+}
