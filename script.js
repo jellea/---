@@ -15,11 +15,11 @@ function playData (input)
 function initAudio()
 {
   if (typeof AudioContext !== "undefined") {
-      context = new AudioContext();
+    myAudioContext = new AudioContext();
   } else if (typeof webkitAudioContext !== "undefined") {
-      context = new webkitAudioContext();
+    myAudioContext = new webkitAudioContext();
   } else {
-      throw new Error('AudioContext not supported. :(');
+    throw new Error('AudioContext not supported. :(');
   }
 
   window.source = myAudioContext.createOscillator();
