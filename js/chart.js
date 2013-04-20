@@ -1,33 +1,22 @@
 $(function() {
 
-    var open = [],
-        high = [],
-        low = [],
-        close = [],
-        volume_btc = [],
-        volume_cur = [],
-        price = [];
-    for (var i = 0; i < bitchart.length; i += 1) {
-        open.push([i, bitchart[i][1]]);
-        high.push([i, bitchart[i][2]]);
-        low.push([i, bitchart[i][3]]);
-        close.push([i, bitchart[i][4]]);
-        volume_btc.push([i, bitchart[i][5]]);
-        volume_cur.push([i, bitchart[i][6]]);
-        price.push([i, bitchart[i][7]]);
+    graphs = [
+        { label: 'open', data: [] },
+        { label: 'high', data: [] },
+        { label: 'low', data: [] },
+        { label: 'close', data: [] },
+        { label: 'volume_btc', data: [], yaxis: 2 },
+        { label: 'volume_cur', data: [], yaxis: 3 },
+        { label: 'price', data: [] }
+    ];
+
+    for (var i = 0; i < bitchart.length; i++) {
+        for(var ii = 0; ii < graphs.length; ii++) {
+            graphs[ii].data.push([bitchart[i][0] + '000', bitchart[i][ii + 1]]);
+        }
     }
 
-    console.log(open);
-
-    plot = $.plot("#placeholder", [
-        { data: open, label: "open"},
-        { data: high, label: "high"},
-        { data: low, label: "low"},
-        { data: close, label: "close"},
-        { data: volume_btc, label: "volume_btc"},
-        { data: volume_cur, label: "volume_cur"},
-        { data: price, label: "price"}
-    ], {
+    plot = $.plot("#placeholder", graphs, {
         series: {
             lines: {
                 show: true
@@ -40,10 +29,13 @@ $(function() {
             hoverable: true,
             autoHighlight: false
         },
-        yaxis: {
-            min: 0,
-            max: 500
-        }
+        xaxes: [ { mode: "time"} ],
+        yaxes: [
+            { min: 0, max: 300 },
+            { min: 0, max: 600000 },
+            { min: 0, max: 60000000 }
+        ],
+        legend: { position: "nw" }
     });
 
     // var legends = $("#placeholder .legendLabel");
