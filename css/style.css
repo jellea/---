@@ -1,10 +1,12 @@
 body
 {
   text-align              : center;
+  font-family             : sans-serif;
 }
 
 #placeholder {
   margin                  : 0 auto;
   width                   : 900px;
   height                  : 250px;
+  text-align              : left;
 }
