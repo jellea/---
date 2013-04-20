@@ -1,6 +1,6 @@
 function parseData ()
 {
-  for (day in bitchart){
+  for (var day in bitchart) {
     day = bitchart[day];
     day[0] = moment.unix(day[0]);
   }
@@ -14,10 +14,14 @@ function playData (input)
 
 function initAudio()
 {
-  if('webkitAudioContext' in window)
-    {
-      window.myAudioContext = new webkitAudioContext();
-    }
+  if (typeof AudioContext !== "undefined") {
+      context = new AudioContext();
+  } else if (typeof webkitAudioContext !== "undefined") {
+      context = new webkitAudioContext();
+  } else {
+      throw new Error('AudioContext not supported. :(');
+  }
+
   window.source = myAudioContext.createOscillator();
   source.type = 0; // sine wave
 
