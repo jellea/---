@@ -20,6 +20,9 @@ $(function() {
         series: {
             lines: {
                 show: true
+            },
+            points:{
+                show: true
             }
         },
         crosshair: {
@@ -27,6 +30,7 @@ $(function() {
         },
         grid: {
             hoverable: true,
+            clickable: true,
             autoHighlight: false
         },
         xaxes: [ { mode: "time"} ],
